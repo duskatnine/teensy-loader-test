@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 	if (!code_size) {
 		usage("MCU type must be specified");
 	}
-	printf_verbose("Teensy Loader, Command Line, Version 2.1\n");
+	printf_verbose("Teensy Loader, Command Line, Version 2.1.a\n");
 
 	if (block_size == 512 || block_size == 1024) {
 		write_size = block_size + 64;
