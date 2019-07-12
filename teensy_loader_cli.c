@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 	if (!code_size) {
 		usage("MCU type must be specified");
 	}
-	printf_verbose("Teensy Loader, Command Line, Version 2.1\n");
+	printf_verbose("Teensy Loader, Command Line, Version 2.1.a\n");
 
 	if (block_size == 512 || block_size == 1024) {
 		write_size = block_size + 64;
@@ -258,7 +258,8 @@ usb_dev_handle * open_usb_device(int vid, int pid)
 			if (r >= 0) {
 				r = usb_detach_kernel_driver_np(h, 0);
 				if (r < 0) {
-					printf_verbose("Teensy Cloe via %s", __FUNCTION__);usb_close(h);
+					printf_verbose("Teensy Cloe via %s
+", __FUNCTION__);usb_close(h);
 					printf_verbose("Device is in use by \"%s\" driver\n", buf);
 					continue;
 				}
@@ -270,7 +271,8 @@ usb_dev_handle * open_usb_device(int vid, int pid)
 			#if !defined(MACOSX)
 			r = usb_claim_interface(h, 0);
 			if (r < 0) {
-				printf_verbose("Teensy Cloe via %s", __FUNCTION__);usb_close(h);
+				printf_verbose("Teensy Cloe via %s
+", __FUNCTION__);usb_close(h);
 				printf_verbose("Unable to claim interface, check USB permissions\n");
 				continue;
 			}
@@ -311,13 +313,14 @@ int teensy_write(void *buf, int len, double timeout)
 void teensy_close(void)
 {
 	if (!libusb_teensy_handle){
-		printf_verbose("Teensy Close Debug 1");
+		printf_verbose("Teensy Close Debug 1\n");
 		return;
 	}
 	
 	printf_verbose("Teensy Cloe Debug 2");
 	usb_release_interface(libusb_teensy_handle, 0);
-	printf_verbose("Teensy Cloe via %s", __FUNCTION__);usb_close(libusb_teensy_handle);
+	printf_verbose("Teensy Cloe via %s
+", __FUNCTION__);usb_close(libusb_teensy_handle);
 	libusb_teensy_handle = NULL;
 }
 
@@ -330,7 +333,8 @@ int hard_reboot(void)
 	if (!rebootor) return 0;
 	r = usb_control_msg(rebootor, 0x21, 9, 0x0200, 0, "reboot", 6, 100);
 	usb_release_interface(rebootor, 0);
-	printf_verbose("Teensy Cloe via %s", __FUNCTION__);usb_close(rebootor);
+	printf_verbose("Teensy Cloe via %s
+", __FUNCTION__);usb_close(rebootor);
 	if (r < 0) return 0;
 	return 1;
 }
@@ -350,7 +354,8 @@ int soft_reboot(void)
 	int response = usb_control_msg(serial_handle, 0x21, 0x20, 0, 0, &reboot_command, 1, 10000);
 
 	usb_release_interface(serial_handle, 0);
-	printf_verbose("Teensy Cloe via %s", __FUNCTION__);usb_close(serial_handle);
+	printf_verbose("Teensy Cloe via %s
+", __FUNCTION__);usb_close(serial_handle);
 
 	if (response < 0) {
 		char *error = usb_strerror();
@@ -504,7 +509,7 @@ int teensy_write(void *buf, int len, double timeout)
 void teensy_close(void)
 {
 	if (!win32_teensy_handle){
-		printf_verbose("Teensy Close Debug 2");
+		printf_verbose("Teensy Close Debug 2\n");
 		return;
 	}
 	CloseHandle(win32_teensy_handle);
@@ -704,7 +709,7 @@ void teensy_close(void)
 {
 	if (!iokit_teensy_reference)
 	{
-		printf_verbose("Teensy Close Debug 3");
+		printf_verbose("Teensy Close Debug 3\n");
 		return;
 	}
 	close_usb_device(iokit_teensy_reference);
@@ -816,9 +821,9 @@ void teensy_close(void)
 	if (uhid_teensy_fd >= 0) {
 		close(uhid_teensy_fd);
 		uhid_teensy_fd = -1;
-		printf_verbose("Teensy Close Debug 4");
+		printf_verbose("Teensy Close Debug 4\n");
 	}
-	printf_verbose("Teensy Close Debug 5");
+	printf_verbose("Teensy Close Debug 5\n");
 }
 
 int hard_reboot(void)
