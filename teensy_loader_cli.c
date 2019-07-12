@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 	if (!code_size) {
 		usage("MCU type must be specified");
 	}
-	printf_verbose("Teensy Loader, Command Line, Version 2.1.a\n");
+	printf_verbose("Teensy Loader, Command Line, Version 2.1\n");
 
 	if (block_size == 512 || block_size == 1024) {
 		write_size = block_size + 64;
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 	
 	if (boot_only) {
 		boot(buf, write_size);
-		printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+		printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 		return 0;
 	}
 
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 	if (reboot_after_programming) {
 		boot(buf, write_size);
 	}
-	printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+	printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 	return 0;
 }
 
@@ -288,7 +288,7 @@ static usb_dev_handle *libusb_teensy_handle = NULL;
 
 int teensy_open(void)
 {
-	printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+	printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 	libusb_teensy_handle = open_usb_device(0x16C0, 0x0478);
 	if (libusb_teensy_handle) return 1;
 	return 0;
@@ -482,7 +482,7 @@ static HANDLE win32_teensy_handle = NULL;
 
 int teensy_open(void)
 {
-	printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+	printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 	win32_teensy_handle = open_usb_device(0x16C0, 0x0478);
 	if (win32_teensy_handle) return 1;
 	return 0;
@@ -678,7 +678,7 @@ static IOHIDDeviceRef iokit_teensy_reference = NULL;
 
 int teensy_open(void)
 {
-	printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+	printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 	iokit_teensy_reference = open_usb_device(0x16C0, 0x0478);
 	if (iokit_teensy_reference) return 1;
 	return 0;
@@ -800,7 +800,7 @@ static int uhid_teensy_fd = -1;
 
 int teensy_open(void)
 {
-	printf_verbose("Teensy Close via %s", __FUNCTION__"); teensy_close();
+	printf_verbose("Teensy Close via %s", __FUNCTION__); teensy_close();
 	uhid_teensy_fd = open_usb_device(0x16C0, 0x0478);
 	if (uhid_teensy_fd < 0) return 0;
 	return 1;
